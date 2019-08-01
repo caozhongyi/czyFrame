@@ -1,9 +1,11 @@
 package com.caozy.net;
 
-public class BaseBean {
+public class BaseBean<T> {
 
     private int code;
     private String msg;
+
+    private T data;
 
     public int getCode() {
         return code;
@@ -19,5 +21,13 @@ public class BaseBean {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }

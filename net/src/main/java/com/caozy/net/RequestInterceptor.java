@@ -26,7 +26,7 @@ public class RequestInterceptor implements Interceptor {
             request = dealGet(request);
         }
 
-        if ("POSt".equalsIgnoreCase(request.method())) {
+        if ("POST".equalsIgnoreCase(request.method())) {
             request = dealPost(request);
         }
 

@@ -1,18 +1,22 @@
-package com.caozy.czyframedemo.activity;
+package com.caozy.czyapp.activity;
 
 import com.caozy.base.activity.BaseNetActivity;
-import com.caozy.czyframedemo.R;
+import com.caozy.czyapp.User;
 import com.caozy.net.Api;
-import com.caozy.net.BaseBean;
-import com.caozy.net.Net;
 
 import io.reactivex.Observable;
 
 public class SplashActivity extends BaseNetActivity {
 
+
+    @Override
+    public Observable<User> getNetObservable(Api api) {
+        return null;
+    }
+
     @Override
     public int getContent() {
-        return R.layout.activity_main;
+        return 0;
     }
 
     @Override
@@ -22,11 +26,6 @@ public class SplashActivity extends BaseNetActivity {
 
     @Override
     public void onNetFail() {
-    }
 
-    @Override
-    public Observable getNetObservable(Api api) {
-        return api.comment("", "", "", "", "", "");
-//        return null;
     }
 }

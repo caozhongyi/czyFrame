@@ -19,7 +19,7 @@ public class NetObserver<T extends BaseBean> implements Observer<T> {
         }
 
         if (responseListener != null) {
-            responseListener.onNetSuccess(t);
+            responseListener.onNetSuccess(t.getData());
         }
     }
 

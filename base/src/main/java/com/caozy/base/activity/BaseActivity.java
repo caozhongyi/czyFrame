@@ -28,7 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             setContentView(getContent());
         }
         backDrawNull();
-        butterKnife();
+//        butterKnife();
         init(savedInstanceState);
     }
 
@@ -45,9 +45,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 此方法中调用  ButterKnife.bind
      */
-    public void butterKnife() {
-        ButterKnife.bind(this);
-    }
+//    public void butterKnife() {
+//        ButterKnife.bind(this);
+//    }
 
     /**
      * 子类可以重写决定是否使用透明状态栏

@@ -13,13 +13,88 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "versionCode"
     }
-    buildTypes {
+
+    //----------------------- 签名配置开始---------------------------------------------
+    //通过代码获取到签名的各个配置项
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def keyStorePath_ = properties.getProperty("key.keyStorePath")
+    def storePassword_ = properties.getProperty("key.storePassword")
+    def keyAlias_ = properties.getProperty("key.keyAlias")
+    def keyPassword_ = properties.getProperty("key.keyPassword")
+    def storeFile_ = file(keyStorePath_)
+
+    signingConfigs {
         release {
-            minifyEnabled false
+            storeFile storeFile_
+            storePassword storePassword_
+            keyAlias keyAlias_
+            keyPassword keyPassword_
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+//        debug {
+//            storeFile storeFile_
+//            storePassword storePassword_
+//            keyAlias keyAlias_
+//            keyPassword keyPassword_
+//            v1SigningEnabled true
+//            v2SigningEnabled true
+//        }
+    }
+    //----------------------- 签名配置结束---------------------------------------------
+
+    //渠道设置
+    productFlavors {
+        YingYongBao {}
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled true
+            zipAlignEnabled true  //压缩优化
+            shrinkResources true  //移出无用资源
+//            testCoverageEnabled false //
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true
+            minifyEnabled true
+            zipAlignEnabled true  //压缩优化
+            shrinkResources true  //移出无用资源
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //对构建的apk重命名并将其copy到我们的目标文件夹
+    applicationVariants.all { variant ->
+        def buildType = variant.buildType.name
+        def flavorName = variant.flavorName
+        def createTime = new Date().format("YYYY-MM-dd_HH_mm_ss", TimeZone.getTimeZone("GMT+08:00"))
+        variant.outputs.all {
+            outputFileName = flavorName + "_" + buildType + "_v" + defaultConfig.versionName + "_" + createTime + ".apk"
+        }
+
+        tasks.all {
+            if ("assemble${variant.name.capitalize()}".equalsIgnoreCase(it.name)) {
+                it.doLast {
+                    copy {
+//                        rename { String fileName ->
+//                            println "------------${fileName}--------------"
+//                            fileName.replace(".apk", "-${defaultConfig.versionCode}.apk")
+//                        }
+                        def destPath = file(project.getProjectDir().getPath() + "/apks/")
+                        from variant.outputs.first().outputFile
+                        into destPath
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -31,5 +106,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation project (':base')
+    implementation project(':base')
 }

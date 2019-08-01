@@ -2,6 +2,9 @@ package com.caozy.base.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
+import com.caozy.net.Api;
+import com.caozy.net.Net;
 import com.caozy.net.NetObserver;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -18,7 +21,7 @@ public abstract class BaseNetActivity extends BaseActivity implements NetObserve
 
     @Override
     public void init(@Nullable Bundle savedInstanceState) {
-        getNetObservable();
+        getNetObservable(Net.getService());
         netObserver = new NetObserver();
         netObserver.setResponseListener(this);
         if (observable != null) {
@@ -27,17 +30,6 @@ public abstract class BaseNetActivity extends BaseActivity implements NetObserve
                     .doOnSubscribe(new Consumer<Disposable>() {
                         @Override
                         public void accept(Disposable disposable) throws Exception {
-
-                        }
-                    })
-                    .doOnLifecycle(new Consumer<Disposable>() {
-                        @Override
-                        public void accept(Disposable disposable) throws Exception {
-
-                        }
-                    }, new Action() {
-                        @Override
-                        public void run() throws Exception {
 
                         }
                     })
@@ -57,11 +49,10 @@ public abstract class BaseNetActivity extends BaseActivity implements NetObserve
      *   ）
      * @return
      */
-    public abstract Observable getNetObservable();
+    public abstract <B> Observable<B> getNetObservable(Api api);
 
-//    @Override
-//    public abstract void onNetSuccess(BaseBean baseBean);
-//
+
+
 //    @Override
 //    public abstract void onNetFail();
 

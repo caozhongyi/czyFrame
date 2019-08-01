@@ -1,4 +1,6 @@
-package com.caozy.net;
+package com.caozy.czyapp;
+
+import com.caozy.net.BaseBean;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -15,7 +17,7 @@ public interface Api {
 
     @POST(PORT_ADD_COMMENT)
     @FormUrlEncoded
-    Observable<BaseBean> comment(@Field("code") String code, @Field("text") String text, @Field("commentType") String commentType,
+    Observable<BaseBean<User>> comment(@Field("code") String code, @Field("text") String text, @Field("commentType") String commentType,
                                  @Field("userCode") String userCod, @Field("timestamp") String timestamp, @Field("sign") String sign);
 
 }

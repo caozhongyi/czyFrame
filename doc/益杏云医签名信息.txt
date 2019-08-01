@@ -1,0 +1,48 @@
+密码：YiXing520
+别名密码：YiXing520
+别名：yixingMedicalCloud
+
+
+
+密钥库类型: JKS
+密钥库提供方: SUN
+
+您的密钥库包含 1 个条目
+
+别名: yixingmedicalcloud
+创建日期: 2018-11-20
+条目类型: PrivateKeyEntry
+证书链长度: 1
+证书[1]:
+所有者: CN=yixingMedicalCloud, OU=shanghaiyixingjiankangguanhliyouxiangongsi, O=shanghaiyixing, L=shanghai, ST=shanghai, C=cn
+发布者: CN=yixingMedicalCloud, OU=shanghaiyixingjiankangguanhliyouxiangongsi, O=shanghaiyixing, L=shanghai, ST=shanghai, C=cn
+序列号: 6ef1543f
+有效期为 Tue Nov 20 10:01:16 CST 2018 至 Thu Nov 12 10:01:16 CST 2048
+证书指纹:
+	 MD5:  0A:C9:C7:EF:52:36:2D:B1:49:BD:89:7F:9D:44:0D:E6
+	 SHA1: AA:EA:37:36:87:C4:30:E2:BA:3C:50:16:C8:AF:3F:50:5E:F0:AF:38
+	 SHA256: DA:7B:11:21:F7:6A:8F:3D:D5:8B:27:60:1B:B1:77:46:1A:80:88:53:F4:08:60:EC:E1:5F:73:13:4E:CF:4E:E7
+签名算法名称: SHA256withRSA
+主体公共密钥算法: 2048 位 RSA 密钥
+版本: 3
+
+扩展: 
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 62 DB EF 6F 93 FB 9D 7E   7E 48 2D F3 F6 00 E9 95  b..o.....H-.....
+0010: 9D D5 EA E1                                        ....
+]
+]
+
+
+
+*******************************************
+*******************************************
+
+
+
+Warning:
+JKS 密钥库使用专用格式。建议使用 "keytool -importkeystore -srckeystore MedicalCloud.jks -destkeystore MedicalCloud.jks -deststoretype pkcs12" 迁移到行业标准格式 PKCS12。
+
